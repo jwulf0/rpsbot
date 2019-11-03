@@ -20,6 +20,6 @@ If you are on the other hand very experienced with cats/fs2/purely functional pr
 
 * `Storage` is also tightly coupled to RPS because one of the parameters of `Storage.updateMatch` is of type `rpsbot.rps.model.Match`. This could be prevented by making `Storage` polymorphic in the Match type, i.e. adding a type parameter `M` to the trait (so that it's `Storage[F[_], M]`) and updating the method to `def updateMatch(lobbyId: Int, updatedMatch: M, timestamp: Int): F[Lobby]`. When going down that road, one might also decouple the `UserMessageHandler` from RPS completely, making it into something like a generic "Lobby- and Game-Move-Handler for 2 Player Games playable by sending texts to a Telegram Bot", which seems like a great example for overengineering but also like an interesting exercise so I might do that in the future.
 
-## Further notes
+## In Action (unless currently offline)
 
-The name, like the command to create/join lobbies as found in `rpsbot.MessageParserDE`, stems from "Schnick Schnack Schnuck", one of the more common names of the many names the game has in German. [[1]](https://de.wikipedia.org/wiki/Schere,_Stein,_Papier)   
+Sometimes, you can find a running German version of the bot at [https://telegram.me/DerSchnickBot](). The name, like the command to create/join lobbies as found in `rpsbot.MessageParserDE`, stems from "Schnick Schnack Schnuck", one of the more common names of the many names the game has in German. [[1]](https://de.wikipedia.org/wiki/Schere,_Stein,_Papier)   
