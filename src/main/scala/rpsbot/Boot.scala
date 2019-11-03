@@ -20,7 +20,7 @@ object Boot extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     for {
       logger    <- Slf4jLogger.fromClass[IO](getClass)
-      appStream <- appWithConfiguredStorage(logger)
+      appStream <- botApplication(logger)
       _         <- logger.info(s"Starting RPS bot application.")
       result <- appStream.compile.drain.map(_ => ExitCode.Success).recoverWith {
                  case t: Throwable => logger.error(t)("RpsBot application crashed") >> IO(ExitCode.Error)
@@ -32,7 +32,7 @@ object Boot extends IOApp {
     * Creates the RPS Bot App as an fs2 Stream by reading configuration environment variables, creating resources
     * accordingly and calling [[RpsBotApp.create]] with those resources.
     */
-  private def appWithConfiguredStorage(logger: Logger[IO]): IO[Stream[IO, Unit]] =
+  private def botApplication(logger: Logger[IO]): IO[Stream[IO, Unit]] =
     for {
       token              <- telegramBotToken
       (parser, feedback) <- interaction
