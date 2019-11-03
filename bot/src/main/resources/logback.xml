@@ -1,0 +1,7 @@
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender" encoder="utf-8"/>
+
+    <root level="info">
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>

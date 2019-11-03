@@ -1,0 +1,10 @@
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender"/>
+
+    <!--<logger name="io.circe" level="debug" />
+    <logger name="org.http4s" level="debug" />-->
+
+    <root level="info">
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
